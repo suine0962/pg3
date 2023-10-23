@@ -16,15 +16,17 @@ Type Min(Type a, Type b)
 }
 
 template<>
+
 char Min<char>(char a, char b)
 {
-	 printf("”šˆÈŠO‚Í‘ã“ü‚Å‚«‚Ü‚¹‚ñ");
+	 printf("æ•°å­—ä»¥å¤–ã¯ä»£å…¥ã§ãã¾ã›ã‚“");
 	 return 0;
 }
 
+
 int main()
 {
-	printf("%d\n", Min<int>(114, 514));
+	printf("%d\n",Min<int>(114, 514));
 	printf("%f\n", Min<float>(11.4f, 51.4f));
 	printf("%f\n", Min<double>(1.0f, 4.0f));
 	Min<char>(1, 3);
