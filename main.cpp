@@ -1,4 +1,5 @@
-
+#include<iostream>
+#include<cstdlib>
 #include <stdio.h>
 #include<stdlib.h>
 #include<time.h>
@@ -35,33 +36,31 @@ void playGame(CallBack callback)
 	callback(diceResult);
 }
 
-void guessCallback(int diceResult)
-{
-	char userGuess;
-	printf("サイコロの出目は %d です。奇数か偶数かを当ててください  (o/e):", diceResult);
-	scanf_s(" %c ", &userGuess,sizeof(userGuess));
-
-	if ((diceResult % 2 == 0 && userGuess == 'e') || (diceResult % 2 != 0 && userGuess == 'o'))
-	{
-		printf("当たり!!\n");
-	}
-	else {
-		printf("はずれ...残念...w\n");
-	}
-
-
-}
-
 
 
 
 int main()
 {
-	//関数ポインタを用意してコールバック関数を指定
-	CallBack callback = guessCallback;
+	//ラムダ式を使ってコールバック関数を定義
+	auto guessCallback = [](int diceResult)
+	{
+		char userGuess;
+		std::cout << "サイコロの出目は" << diceResult << "です奇数か偶数かを当ててください(o/e)";
+		std::cin >> userGuess;
+
+		if ((diceResult % 2 == 0 && userGuess == 'e') || (diceResult % 2 != 0 && userGuess == 'o'))
+		{
+			std::cout << "当たり！！" << std::endl;
+		}
+		else
+		{
+			std::cout << "はずれ。。。残念．．．" << std::endl;
+		}
+	};
+
 
 	//ゲームスタート
-	playGame(callback);
+	playGame(guessCallback);
 
 
 	return 0;
