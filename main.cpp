@@ -29,7 +29,7 @@ void playGame(CallBack callback)
 	int diceResult = RollDice();
 
 	//もったいつけて3秒待つ
-	printf("3秒待っています...");
+	std::cout << "3秒待っています..." << std::endl;
 	delay(3);
 
 	//コールバック関数呼び出し
