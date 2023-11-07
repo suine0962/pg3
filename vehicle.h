@@ -2,8 +2,6 @@
 class vehicle
 {
 public:
-	vehicle();
-		virtual ~vehicle();
 
 		virtual void move();
 

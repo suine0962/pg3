@@ -4,7 +4,7 @@
 
 int main()
 {
-	vehicle* vehiCle[4];
+	vehicle* vehiCle[3];
 
 	//生成フェーズ
 	for (int i = 0; i < 2; i++)
