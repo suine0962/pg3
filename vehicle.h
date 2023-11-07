@@ -1,10 +1,11 @@
 #pragma once
-class vehicle
+class Ivehicle
 {
 public:
 
-		virtual void move();
-
+	virtual void move() = 0;
+	virtual void moveSpeed() = 0;
+	
 	protected:
 		const char *name;
 };
