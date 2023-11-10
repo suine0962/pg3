@@ -4,7 +4,7 @@ int main()
 {
 	Enemy* enemy = new Enemy;
 
-	enemy->Uodata();
+	enemy->Updata();
 
 
 	return 0;
