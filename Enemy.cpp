@@ -2,24 +2,24 @@
 
 void (Enemy::* Enemy::EnemyAction[])() =
 {
-	&Enemy::CloseCombat,//‹ßÚUŒ‚
-	&Enemy::Shooting,//ËŒ‚
-	&Enemy::Retreat//—£’E
+	&Enemy::CloseCombat,//è¿‘æ¥æ”»æ’ƒ
+	&Enemy::Shooting,//å°„æ’ƒ
+	&Enemy::Retreat//é›¢è„±
 };
 
 void Enemy::CloseCombat()
 {
-	printf("“G‚Ì‹ßÚUŒ‚II\n");
+	printf("æ•µã®è¿‘æ¥æ”»æ’ƒï¼ï¼\n");
 }
 
 void Enemy::Shooting()
 {
-	printf("“G‚ÌËŒ‚\n");
+	printf("æ•µã®å°„æ’ƒ\n");
 }
 
 void Enemy::Retreat()
 {
-	printf("“G‚ª—£’E‚·‚éII\n");
+	printf("æ•µãŒé›¢è„±ã™ã‚‹ï¼ï¼\n");
 }
 
 void Enemy::Uodata()
