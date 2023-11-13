@@ -1,37 +1,35 @@
-#include"Car.h"
-#include"bicycle.h"
-#include"vehicle.h"
+#include"Rectangle.h"
+#include"Circle.h"
+#include"IShape.h"
 
 int main()
 {
-	Ivehicle* IvehiCle[3];
-
+	IShape* iShape[3];
 	//生成フェーズ
 	for (int i = 0; i < 2; i++)
 	{
 		if (i < 1)
 		{
-			IvehiCle[i] = new bicycle;
+			iShape[i] = new Circle;
 		}
 		else
-			IvehiCle[i] = new Car;
+			iShape[i] = new Rectangle;
 	}
 
 
-	//移動フェーズ
+	for (int i = 0; i < 2; i++)
+	{
+		iShape[i]->Size();
+	}
 	for (int i = 0; i < 2; i++) 
 	{
-		IvehiCle[i]->move();
-	}
-	for (int i = 0; i < 2; i++)
-	{
-		IvehiCle[i]->moveSpeed();
+		iShape[i]->Draw();
 	}
 
 
 	for (int i = 0; i < 2; i++)
 	{
-		delete IvehiCle[i];
+		delete iShape[i];
 	}
 
 	return 0;
