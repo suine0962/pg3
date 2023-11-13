@@ -9,17 +9,17 @@ void (Enemy::* Enemy::EnemyAction[])() =
 
 void Enemy::CloseCombat()
 {
-	printf("敵の近接攻撃！！\n");
+	printf("敵の近接攻撃!!\n");
 }
 
 void Enemy::Shooting()
 {
-	printf("敵の射撃\n");
+	printf("敵の射撃!!\n");
 }
 
 void Enemy::Retreat()
 {
-	printf("敵が離脱する！！\n");
+	printf("敵が離脱する!!\n");
 }
 
 void Enemy::Uodata()
