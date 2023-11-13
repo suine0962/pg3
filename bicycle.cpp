@@ -3,5 +3,5 @@
 
 void bicycle::move()
 {
-	printf("©“]Ô‚ğ‘†‚®\n");
+	printf("è‡ªè»¢è»Šã‚’æ¼•ã\n");
 }

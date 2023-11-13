@@ -1,12 +1,15 @@
 #include"Car.h"
 #include"bicycle.h"
 #include"vehicle.h"
+#include <iostream>
+#include<Windows.h>
 
 int main()
 {
+
 	vehicle* vehiCle[3];
 
-	//生成フェーズ
+	//逕滓�舌ヵ繧ｧ繝ｼ繧ｺ
 	for (int i = 0; i < 2; i++)
 	{
 		if (i < 1)
@@ -18,7 +21,7 @@ int main()
 	}
 
 
-	//移動フェーズ
+	//遘ｻ蜍輔ヵ繧ｧ繝ｼ繧ｺ
 	for (int i = 0; i < 2; i++)
 	{
 		vehiCle[i]->Activate();

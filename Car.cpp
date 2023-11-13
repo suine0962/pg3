@@ -3,11 +3,11 @@
 
 void Car::Activate()
 {
-	printf("エンジンをかける\n");
+	printf("繧ｨ繝ｳ繧ｸ繝ｳ繧偵°縺代ｋ\n");
 
 }
 
 void Car::move()
 {
-	printf("アクセルを踏む\n");
+	printf("繧｢繧ｯ繧ｻ繝ｫ繧定ｸ上�\n");
 }

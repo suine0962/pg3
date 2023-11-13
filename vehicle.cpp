@@ -2,11 +2,11 @@
 #include<stdio.h>
 void vehicle::Activate()
 {
-	printf("æ‚è•¨‚ğ‹N“®\n");
+	printf("ä¹—ã‚Šç‰©ã‚’èµ·å‹•\n");
 }
 
 
 void vehicle::move()
 {
-	printf("æ‚è•¨‚ªˆÚ“®’†\n");
+	printf("ä¹—ã‚Šç‰©ãŒç§»å‹•ä¸­\n");
 }
