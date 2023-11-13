@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="math.cpp" />
+    <ClCompile Include="PGMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PGMath.h" />
