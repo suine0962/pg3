@@ -19,6 +19,10 @@ int main()
 
 
 	//移動フェーズ
+	for (int i = 0; i < 2; i++)
+	{
+		vehiCle[i]->Activate();
+	}
 	for (int i = 0; i < 2; i++) 
 	{
 		vehiCle[i]->move();

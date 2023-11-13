@@ -1,7 +1,13 @@
 #include"Car.h"
 #include<stdio.h>
 
+void Car::Activate()
+{
+	printf("エンジンをかける\n");
+
+}
+
 void Car::move()
 {
-	printf("自動車が移動中\n");
+	printf("アクセルを踏む\n");
 }
