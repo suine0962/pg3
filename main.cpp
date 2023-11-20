@@ -16,6 +16,7 @@ int RecursiveSalary(int hours,int time)
 	{
 		float currenWage = time * 1;
 		float nextHourlyRate = time * 2 - 50;
+
 		return currenWage + RecursiveSalary(hours -1 ,nextHourlyRate);
 	}
 
