@@ -39,7 +39,7 @@ void guessCallback(int diceResult)
 {
 	char userGuess;
 	printf("サイコロの出目は %d です。奇数か偶数かを当ててください  (o/e):", diceResult);
-	scanf_s(" %c ", &userGuess,sizeof(userGuess));
+	scanf_s("%d", &userGuess);
 
 	if ((diceResult % 2 == 0 && userGuess == 'e') || (diceResult % 2 != 0 && userGuess == 'o'))
 	{
