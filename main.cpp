@@ -34,8 +34,6 @@ int main()
 {
 
 
-
-
     // ゲームをプレイする
     guessNumber([](bool isCorrect) {
         if (isCorrect) {
