@@ -11,15 +11,14 @@ int RollDice()
 
 void SetTimeout(std::function<void(int)>callBack)
 {
+    // もったいつけるために3秒待つ
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 
 }
 
 void guessNumber(std::function<void(bool)> callback) {
     // サイコロを振る
     int diceResult = RollDice();
-
-    // もったいつけるために3秒待つ
-    std::this_thread::sleep_for(std::chrono::seconds(3));
 
     // ユーザーに奇数か偶数を当ててもらう
     std::cout << "サイコロの出目は " << diceResult << " です。奇数(1)か偶数(2)を選んでください: ";
@@ -33,15 +32,12 @@ void guessNumber(std::function<void(bool)> callback) {
 
 int main()
 {
-    std::function<void()> setTimeout = [](std::function<void()> callback, int milliseconds) {
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-        callback();
 
-    };
+
 
     // ゲームをプレイする
-    guessNumber([&setTimeout](bool isCorrect) {
+    guessNumber([](bool isCorrect) {
         if (isCorrect) {
             std::cout << "正解です！" << std::endl;
         }
