@@ -1,66 +1,51 @@
 #include<iostream>
-#include<cstdlib>
-#include <stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<Windows.h>
+#include<functional>
+#include<chrono>
+#include<thread>
 //サイコロを振る関数
 int RollDice()
 {
-	srand(time(NULL));
 	return rand() % 6 + 1;
 }
 
-//コールバック関数の型定義
-typedef void (*CallBack)(int);
+void guessNumber(std::function<void(bool)> callback) {
+    // サイコロを振る
+    int diceResult = RollDice();
 
+    // もったいつけるために3秒待つ
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 
-//待ち時間
-void delay(int seconds)
-{
-	int milli_seconds = 1000 * seconds;
-	clock_t start_time = clock();
-	while (clock() < start_time + milli_seconds);
+    // ユーザーに奇数か偶数を当ててもらう
+    std::cout << "サイコロの出目は " << diceResult << " です。奇数(1)か偶数(2)を選んでください: ";
+    int userGuess;
+    std::cin >> userGuess;
+
+    // ラムダ式を使って入力された値をキャプチャーしてコールバック関数を呼び出す
+    callback(userGuess % 2 == diceResult % 2);
+
 }
-
-
-void playGame(CallBack callback)
-{
-	int diceResult = RollDice();
-
-	//もったいつけて3秒待つ
-	std::cout << "3秒待っています..." << std::endl;
-	delay(3);
-
-	//コールバック関数呼び出し
-	callback(diceResult);
-}
-
-
-
 
 int main()
 {
-	//ラムダ式を使ってコールバック関数を定義
-	auto guessCallback = [](int diceResult)
-	{
-		char userGuess;
-		std::cout << "サイコロの出目は" << diceResult << "です奇数か偶数かを当ててください(o/e)";
-		std::cin >> userGuess;
+    std::function<void()> setTimeout = [](std::function<void()> callback, int milliseconds) {
 
-		if ((diceResult % 2 == 0 && userGuess == 'e') || (diceResult % 2 != 0 && userGuess == 'o'))
-		{
-			std::cout << "当たり！！" << std::endl;
-		}
-		else
-		{
-			std::cout << "はずれ。。。残念．．．" << std::endl;
-		}
-	};
+        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+        callback();
 
+    };
 
-	//ゲームスタート
-	playGame(guessCallback);
+    // ゲームをプレイする
+    guessNumber([&setTimeout](bool isCorrect) {
+        if (isCorrect) {
+            std::cout << "正解です！" << std::endl;
+        }
+        else {
+            std::cout << "不正解です。" << std::endl;
+        }
+
+        }
+    );
+
 
 
 	return 0;
