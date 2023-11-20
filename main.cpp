@@ -8,6 +8,12 @@ int RollDice()
 	return rand() % 6 + 1;
 }
 
+
+void SetTimeout(std::function<void(int)>callBack)
+{
+
+}
+
 void guessNumber(std::function<void(bool)> callback) {
     // サイコロを振る
     int diceResult = RollDice();
