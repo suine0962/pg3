@@ -1,44 +1,27 @@
-#include<stdio.h>
-#include<Windows.h>
-int GenerallySalary(int hours)
-{
-	int RegularRate = 1072;
-	return RegularRate * hours;
-}
+#include <stdio.h>
 
-int RecursiveSalary(int hours,int time)
-{
-	if (hours == 0)
-	{
-		return 0;
-	}
-	else
-	{
-		float currenWage = time * 1;
-		float nextHourlyRate = time * 2 - 50;
+int Recursive(int h, int j, int m) {
 
-		return currenWage + RecursiveSalary(hours -1 ,nextHourlyRate);
+	if (h <= 0) {
+		//処理が成功した場合
+		return j;
 	}
 
-	
+	return Recursive(h - 1, j += m, m * 2 - 50);
+
 }
 
+int main() {
+	int hour = 4;
+	int money = 100;
+	int total = 0;
+	int normal = 1072;
 
-int main()
-{
+	int result;
 
-	int hoursWorks = 9;
+	result = Recursive(hour, total, money);
 
-	//一般的な賃金体系
-	int reguLarSalary = GenerallySalary(hoursWorks);
-	printf("一般的な賃金体系での給与:%d円\n",reguLarSalary);
-
-
-	//再帰的な賃金体系
-	int initilalHourlyRate = 100;
-	int recursiveWage = RecursiveSalary(hoursWorks - 1, initilalHourlyRate);
-	printf("再帰的な賃金体系での給料:%d円\n", recursiveWage);
-
+	printf("3時間働いた一般賃金体系 %d ： 再帰的な賃金体系 %d", normal * hour, result);
 
 	return 0;
 }
