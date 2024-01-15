@@ -1,52 +1,57 @@
-#include<iostream>
-#include<functional>
-#include<chrono>
-#include<thread>
-//サイコロを振る関数
-int RollDice()
-{
-	return rand() % 6 + 1;
-}
+#include <stdio.h>
+#include <Windows.h>
+#include <stdlib.h>
+#include <time.h>
+#include <functional>
+
+int main() {
+	//ランダム関数
+	srand((unsigned int)time(NULL));
+	//newType calc;
+
+	//calc = Lottery;
 
 
-void SetTimeout(std::function<void(int)>callBack)
-{
-    // もったいつけるために3秒待つ
-    std::this_thread::sleep_for(std::chrono::seconds(3));
+	int num;
+	int select = 0;
 
-}
+	printf("半か丁を選んでください\n");
+	printf("1と入力すると半、2と入力すると丁になります\n");
+	scanf_s("%d", &select);
+	num = 1 + rand() % 6;
 
-void guessNumber(std::function<void(bool)> callback) {
-    // サイコロを振る
-    int diceResult = RollDice();
+	std::function<void(void)> lottery = [=]() {
+		printf("サイコロの目は%dでした。\n", num);
 
-    // ユーザーに奇数か偶数を当ててもらう
-    std::cout << "サイコロの出目は " << diceResult << " です。奇数(1)か偶数(2)を選んでください: ";
-    int userGuess;
-    std::cin >> userGuess;
+		if (select == 1) {
+			if (num == 1 || num == 3 || num == 5) {
+				printf("半です");
+			}
+			else {
+				printf("丁です");
+			}
+		}
 
-    // ラムダ式を使って入力された値をキャプチャーしてコールバック関数を呼び出す
-    callback(userGuess % 2 == diceResult % 2);
+		if (select == 2) {
+			if (num == 0 || num == 2 || num == 4 || num == 6) {
+				printf("丁です");
+			}
+			else {
+				printf("半です");
+			}
+		}
 
-}
+	};
 
-int main()
-{
+	std::function<void(int)> setTimeout = [=](int second) {
+		Sleep(second * 1000);
 
+		lottery();
 
-    // ゲームをプレイする
-    guessNumber([](bool isCorrect) {
-        if (isCorrect) {
-            std::cout << "正解です！" << std::endl;
-        }
-        else {
-            std::cout << "不正解です。" << std::endl;
-        }
+	};
 
-        }
-    );
-
-
+	setTimeout(3);
 
 	return 0;
+
 }
