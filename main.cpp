@@ -1,68 +1,59 @@
 
 #include <stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<Windows.h>
-//サイコロを振る関数
-int RollDice()
-{
-	srand(time(NULL));
-	return rand() % 6 + 1;
-}
+#include <Windows.h>
+#include <stdlib.h>
+#include <time.h>
 
-//コールバック関数の型定義
-typedef void (*CallBack)(int);
+typedef void (*newType)(int*, int*);
 
+void Lottery(int* select, int* num) {
 
-//待ち時間
-void delay(int seconds)
-{
-	int milli_seconds = 1000 * seconds;
-	clock_t start_time = clock();
-	while (clock() < start_time + milli_seconds);
-}
+	printf("サイコロの目は%dでした。\n", *num);
 
-
-void playGame(CallBack callback)
-{
-	int diceResult = RollDice();
-
-	//もったいつけて3秒待つ
-	printf("3秒待っています...");
-	delay(3);
-
-	//コールバック関数呼び出し
-	callback(diceResult);
-}
-
-void guessCallback(int diceResult)
-{
-	char userGuess;
-	printf("サイコロの出目は %d です。奇数か偶数かを当ててください  (o/e):", diceResult);
-	scanf_s("%d", &userGuess);
-
-	if ((diceResult % 2 == 0 && userGuess == 'e') || (diceResult % 2 != 0 && userGuess == 'o'))
-	{
-		printf("当たり!!\n");
-	}
-	else {
-		printf("はずれ...残念...w\n");
+	if (*select == 1) {
+		if (*num == 1 || *num == 3 || *num == 5) {
+			printf("半です");
+		}
+		else {
+			printf("丁です");
+		}
 	}
 
+	if (*select == 2) {
+		if (*num == 0 || *num == 2 || *num == 4 || *num == 6) {
+			printf("丁です");
+		}
+		else {
+			printf("半です。");
+		}
+	}
 
 }
 
+void SetTimeout(newType calc, int second, int select, int num) {
 
+	Sleep(second * 1000);
 
+	calc(&select, &num);
 
-int main()
-{
-	//関数ポインタを用意してコールバック関数を指定
-	CallBack callback = guessCallback;
+}
 
-	//ゲームスタート
-	playGame(callback);
+int main() {
+	//ランダム関数
+	srand((unsigned int)time(NULL));
+	newType calc;
 
+	calc = Lottery;
+	int num;
+	int select = 0;
+
+	printf("半か丁を選んでください\n");
+	printf("1と入力すると半、2と入力すると丁になります\n");
+	scanf_s("%d", &select);
+	num = 1 + rand() % 6;
+
+	SetTimeout(calc, 3, select, num);
 
 	return 0;
+
 }
