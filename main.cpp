@@ -1,7 +1,9 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include<string.h>
+#include <string.h>
+#include <list>
+#pragma warning(disable : 4996)
 
 // 駅の構造体
 struct Station {
@@ -85,10 +87,14 @@ int main() {
     displayList(&stationList);
 
     // 2019年の駅一覧表示
-    // ここでは順番を変更したり駅を追加したりする必要があります
+    printf("2019年の駅一覧:\n");
+    displayList(&stationList);
+    // ここでは順番を変更したり駅を追加したりする必要がある
 
     // 2022年の駅一覧表示
-    // 同様に順番を変更したり駅を追加したりする必要があります
+    printf("2022年の駅一覧:\n");
+    displayList(&stationList);
+    // 同様に順番を変更したり駅を追加したりする必要がある
 
     return 0;
 }
