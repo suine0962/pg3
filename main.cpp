@@ -76,6 +76,7 @@ int main() {
     insertStation(&stationList, "Ebisu");
     insertStation(&stationList, "Shin-Okubo");
 
+
     // 西日暮里駅を挿入
     insertStation(&stationList, "Nishi-Nippori");
 
