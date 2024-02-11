@@ -26,7 +26,7 @@ int main() {
 
 	///move
 	now = chrono::steady_clock::now();
-	string MoveText_A = move(TextA);
+	string MoveTextA = move(TextA);
 	end = chrono::steady_clock::now();
 
 	int Move = chrono::duration_cast<chrono::microseconds>(end - now).count();
