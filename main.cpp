@@ -3,7 +3,8 @@
 #include <Windows.h>
 #include <list>
 
-int main() {
+int main()
+{
 
     std::list<const char*> yamanoteStationName = {
         "Tokyo",
@@ -67,3 +68,4 @@ int main() {
     }
 
     return 0;
+}
