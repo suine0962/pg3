@@ -12,7 +12,7 @@ int Recursive(int h, int j, int m) {
 }
 
 int main() {
-	int hour = 4;
+	int hour = 3;
 	int money = 100;
 	int total = 0;
 	int normal = 1072;
