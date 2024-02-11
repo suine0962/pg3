@@ -1,36 +1,55 @@
 #include <stdio.h>
-#include <thread>
+#include <Windows.h>
 
-void ParallelProcess(int num)
-{
-	printf("thread1\n");
-}
+#include <algorithm>
+#include <cassert>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <list>
 
-void ParallelProcess2(int num)
-{
-	printf("thread2\n");
-}
+struct StudentAccount {
+    std::string name;
+    std::string gradeNumber;
+    std::string attendanceNumber;
+};
 
-void ParallelProcess3(int num)
-{
-	printf("thread3\n");
-}
+int main() {
+    SetConsoleOutputCP(65001);
 
-int main()
-{
-	int num;
+    std::list<StudentAccount> studentAccounts;
 
-	std::thread th1(ParallelProcess, num);
-	th1.join();
+    // 読み込むファイルを開く
+    std::ifstream inputFile("05_02.txt");
+    assert(inputFile.is_open());
 
-	std::thread th2(ParallelProcess2, num);
-	th2.join();
+    // 行ごとに読み込み
+    std::string line;
+    while (getline(inputFile, line)) {
+        // 1行分の文字列をストリームに変換して解析しやすくする
+        std::istringstream lineStream(line);
+        std::string account;
 
-	std::thread th3(ParallelProcess3, num);
-	th3.join();
-	
-	
-	
+        while (getline(lineStream, account, ',')) {
+            StudentAccount studentAccount{};
+            studentAccount.name = account;
+            std::string gradeNumber = account.substr(2, 3);
+            std::string attendanceNumber = account.substr(6, 4);
+            studentAccount.gradeNumber = gradeNumber.c_str();
+            studentAccount.attendanceNumber = attendanceNumber.c_str();
+            studentAccounts.emplace_back(studentAccount);
+        }
+    }
 
-	return 0;
+    // ファイルを閉じる
+    inputFile.close();
+
+    studentAccounts.sort([](const StudentAccount& a, const StudentAccount& b) {
+        return  std::atoi((a.gradeNumber + a.attendanceNumber).c_str()) < std::atoi((b.gradeNumber + b.attendanceNumber).c_str());
+        });
+
+    for (auto& accountName : studentAccounts) {
+        std::cout << accountName.name << std::endl;
+    }
+    return 0;
 }
