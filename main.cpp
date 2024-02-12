@@ -1,27 +1,24 @@
-#include <stdio.h>
+#include<stdio.h>
 
-int Recursive(int h, int j, int m) {
-
-	if (h <= 0) {
-		//処理が成功した場合
-		return j;
+int  RecursiveSalary(int wage, int workingTime)
+{
+	if (workingTime <= 1) {
+		return wage;
 	}
-
-	return Recursive(h - 1, j += m, m * 2 - 50);
-
+	return wage + RecursiveSalary(wage * 2 - 50, workingTime - 1);
 }
 
-int main() {
-	int hour = 3;
-	int money = 100;
-	int total = 0;
-	int normal = 1072;
+int main()
+{
+	const int workingTime = 8;
+	const int hourlyWage = 1072;
 
-	int result;
+	int NormalTotalWage = hourlyWage * workingTime;
+	int RecursiveTotalWage = RecursiveSalary(100, workingTime);
 
-	result = Recursive(hour, total, money);
+	printf("%d時間働いたときの給料\n", workingTime);
+	printf("一般的賃金体系の給料 : %d\n", NormalTotalWage);
+	printf("再起的賃金体系の給料 : %d\n", RecursiveTotalWage);
 
-	printf("3時間働いた一般賃金体系 %d ： 再帰的な賃金体系 %d", normal * hour, result);
-
-	return 0;
+	return  0;
 }
